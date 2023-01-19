@@ -24,6 +24,6 @@ export class MessagesRepository {
       id += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     messages[id] = { id, content };
-    await writeFile('messages.json', JSON.stringify(messages));
+    await writeFile('messagees.json', JSON.stringify(messages));
   }
 }

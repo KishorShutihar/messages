@@ -8,34 +8,17 @@ export class MessagesService {
     this.messagesRepo = new MessagesRepository();
   }
 
-  findOne(id: string) {
-      return this.messagesRepo.findOne(id);
-    try {
-    } catch (error) {
-        console.log("hi");
-        throw error
-    //   throw new Error(`The data for given ${id} not found`);
-    }
+  async findOne(id: string) {
+    const data = await this.messagesRepo.findOne(id);
+    //if instead of try catfch as nothing could go wrong except that the data may not be present and undefined will be rteturned
+    return data;
   }
 
-  findAll() {
-      return this.messagesRepo.findAll();
-    try {
-    } catch (error) {
-        throw error
-      throw new Error(
-        'The database is empty (actually its messages.json that is empty',
-      );
-    }
+  async findAll() {
+    return await this.messagesRepo.findAll();
   }
 
-  create(content: string) {
-      return this.messagesRepo.create(content);
-    try {
-    } catch (error) {
-        throw error
-        throw new Error("Unable to add to the database");
-        
-    }
+  async create(content: string) {
+    const result = await this.messagesRepo.create(content);
   }
 }
